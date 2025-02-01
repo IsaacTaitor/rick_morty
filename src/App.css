@@ -1,0 +1,17 @@
+#root {
+  width: 100%;
+  display: flex;
+}
+
+.card {
+  width: 50%;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.character {
+  display: flex;
+  flex-direction: column;
+}
