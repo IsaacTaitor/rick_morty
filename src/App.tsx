@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Dialog, DialogTitle, List, ListItem, ListItemButton, ListItemText } from '@mui/material'
 import './App.css'
-import { Avatar, Dialog, DialogTitle, List, ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material'
-import { blue } from '@mui/material/colors'
 
 export interface SimpleDialogProps {
   open: boolean;
@@ -13,18 +10,19 @@ export interface SimpleDialogProps {
 
 function SimpleDialog(props: SimpleDialogProps) {
   const { onClose, selectedValue, open } = props;
-
-  if (!selectedValue) return null;
-
   const [character, setCharacter] = useState({})
 
   useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/${selectedValue}`)
-    .then(response => response.json())
-    .then(result => {
-      setCharacter(result)
-    })
+    if (selectedValue) {
+      fetch(`https://rickandmortyapi.com/api/character/${selectedValue}`)
+      .then(response => response.json())
+      .then(result => {
+        setCharacter(result)
+      })
+    }
   }, [selectedValue])
+
+  if (!selectedValue) return null;
 
   const handleClose = () => {
     onClose();
